@@ -15,3 +15,15 @@ class FF3:
     def _decrypt_numeral_string(self, X: str, T: Buffer): str
     def encrypt(self, pt: str, T_56: Buffer): str
     def decrypt(self, pt: str, T_56: Buffer): str
+
+
+class RadixOutOfRangeError(ValueError):
+    pass
+
+
+class AlphabetOutOfRangeError(ValueError):
+    pass
+
+
+class AlphabetValueError(ValueError):
+    pass
