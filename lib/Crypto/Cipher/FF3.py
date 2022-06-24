@@ -86,8 +86,8 @@ class FF3:
           x : Integer
         """
         x = 0
-        for i in range(0, len(X)):
-            x = x * self.radix + int(X[i])
+        for s in X:
+            x = x * self.radix + s
         return x
 
     def _num(self, X):
@@ -112,7 +112,7 @@ class FF3:
           X : numeral String with length of m
         """
         X = []
-        for i in range(0, m):
+        for _ in range(m):
             X.insert(0, str(x % self.radix))
             x = x // self.radix
         return X
@@ -163,7 +163,7 @@ class FF3:
         : Return:
          T_64: A 64-bit tweak value converted per Step 3
         """
-        if type(T_56) is not (bytes or bytearray):
+        if not isinstance(T_56, (bytes, memoryview, bytearray)):
             raise TypeError('Tweak must be bytes or bytearray')
         if len(T_56) != 7:
             raise ValueError('Tweak must be 7 bytes or 56 bits in length')
@@ -232,7 +232,7 @@ class FF3:
         # Step 3: Partition T into 32-bit T_L and T_R
         T_L, T_R = T[:4], T[4:]
         # Step 4: Iteration of the eight Feistel rounds...
-        for i in range(0, 8):
+        for i in range(8):
             # Step 4.i: The partiy of the round _number determines the length m
             # of the substring A, and whether T_L or T_R is used as w in 4ii
             if (i % 2 == 0):
