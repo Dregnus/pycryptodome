@@ -163,7 +163,7 @@ class FF3:
         : Return:
          T_64: A 64-bit tweak value converted per Step 3
         """
-        if type(T_56) is not (bytes or bytearray):
+        if not isinstance(T_56, (bytes, memoryview, bytearray)):
             raise TypeError('Tweak must be bytes or bytearray')
         if len(T_56) != 7:
             raise ValueError('Tweak must be 7 bytes or 56 bits in length')
